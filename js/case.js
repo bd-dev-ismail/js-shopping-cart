@@ -1,31 +1,12 @@
-/* 
-1. add event listener
-2.get the input field 
-3.convert the number to int
-4. update the new case number by +;
-5.set the value;
-*/
-function updateCaseNumber(isIncrease){
-    const caseNumberField = document.getElementById('case-number-field');
-    const caseNumberString = caseNumberField.value;
-    const previousCaseNumber = parseInt(caseNumberString);
-    let newCaseNumber;
-    if(isIncrease){
-        newCaseNumber = previousCaseNumber + 1;
-    }
-    else{
-        newCaseNumber = previousCaseNumber - 1;
-    }
-    caseNumberField.value = newCaseNumber;
-   return newCaseNumber;
-}
+
+//Wroking on plus button
 document.getElementById('btn-case-plus').addEventListener('click', function(){
     const newCaseNumber = updateCaseNumber(true);
-    const totalPrice = newCaseNumber  * 59;
-    const caseTotalElement = document.getElementById('case-total');
-    caseTotalElement.innerText = totalPrice;
+    updateCaseTotalPrice(newCaseNumber);
 });
-
+//working on minus button
 document.getElementById('btn-case-minus').addEventListener('click', function(){
-    updateCaseNumber(false);
+
+   const newCaseNumber = updateCaseNumber(false);
+   updateCaseTotalPrice(newCaseNumber);
 });

@@ -25,3 +25,28 @@ function updateCaseTotalPrice(newCaseNumber){
     const caseTotalElement = document.getElementById('case-total');
     caseTotalElement.innerText = totalPrice;
 }
+function getPhoneTotalValueById(elementId){
+    const phoneTotalElement = document.getElementById(elementId);
+    const currentpPhoneTotalString = phoneTotalElement.innerText;
+    const currentPhoneTotal =  parseInt(currentpPhoneTotalString);
+    return currentPhoneTotal;
+}
+function setTextElementValueById(elementId, newValue){
+    const subTotalElement = document.getElementById(elementId);
+    subTotalElement.innerText = newValue;
+}
+function calculateSubTotal(){
+     //calculate Total
+    const phoneTotalElement = getPhoneTotalValueById('phone-total');
+    const caseTotalElement = getPhoneTotalValueById('case-total');
+
+    const currentSubTotal = phoneTotalElement + caseTotalElement;
+    setTextElementValueById('sub-total', currentSubTotal);
+    //calcualte tax
+    const taxAmountString = (currentSubTotal * 0.1).toFixed(2);
+    const taxAmount = parseFloat(taxAmountString);
+    setTextElementValueById('tax-total', taxAmount);
+
+    const finalAmount = currentSubTotal + taxAmount;
+    setTextElementValueById('final-total', finalAmount);
+}

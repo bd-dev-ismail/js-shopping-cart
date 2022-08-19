@@ -17,9 +17,22 @@ function updatePhoneTotalPrice(newPhoneNumber){
     const phoneTotalElement = document.getElementById('phone-total');
     phoneTotalElement.innerText = phoneTotal;
 }
+function getPhoneTotalValueById(elementId){
+    const phoneTotalElement = document.getElementById(elementId);
+    const currentpPhoneTotalString = phoneTotalElement.innerText;
+    const currentPhoneTotal =  parseInt(currentpPhoneTotalString);
+    return currentPhoneTotal;
+}
 document.getElementById('btn-phone-plus').addEventListener('click', function(){
     const newPhoneNumber = updatePhoneNumber(true);
     updatePhoneTotalPrice(newPhoneNumber);
+    //calculate Total
+    const phoneTotalElement = getPhoneTotalValueById('phone-total');
+    const caseTotalElement = getPhoneTotalValueById('case-total');
+    const currentSubTotal = phoneTotalElement + caseTotalElement;
+    const subTotalElement = document.getElementById('sub-total');
+    subTotalElement.innerText = currentSubTotal;
+   
 });
 document.getElementById('btn-phone-minus').addEventListener('click', function(){
      const newPhoneNumber = updatePhoneNumber(false);
